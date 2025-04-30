@@ -13,6 +13,33 @@ h1 {
     margin-bottom: 40px;
 }
 
+.profile {
+    text-align: center; /* 中央寄せ */
+    margin-bottom: 40px; /* ギャラリーとの間隔 */
+}
+
+.profile img {
+    width: 120px; /* 写真サイズ */
+    height: 120px;
+    border-radius: 50%; /* 丸く表示 */
+    object-fit: cover; /* 写真をきれいに表示 */
+    margin-bottom: 15px;
+}
+
+.profile h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile p {
+    font-size: 16px;
+    color: #555;
+    margin: 0 auto;
+    max-width: 500px; /* 自己紹介文の幅制限 */
+}
+
+
 /* ギャラリーの写真を並べるスタイル */
 .gallery {
     display: grid;
@@ -38,8 +65,8 @@ h1 {
 
 /* SNSアイコンのサイズと動きの設定 */
 .sns-links img {
-    width: 40px; /* アイコンの大きさ */
-    height: 40px;
+    width: 35px; /* アイコンの大きさ */
+    height: 35px;
     transition: opacity 0.3s; /* マウスを乗せたときの変化を滑らかにする */
 }
 
