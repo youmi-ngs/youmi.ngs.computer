@@ -1,0 +1,50 @@
+/* ページ全体のスタイル */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 20px;
+}
+
+/* タイトルのスタイル */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+/* ギャラリーの写真を並べるスタイル */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* ↓↓↓ ここから下が追加した部分 ↓↓↓ */
+
+/* SNSリンクを並べるための箱 */
+.sns-links {
+    display: flex;
+    justify-content: center; /* 真ん中に並べる */
+    gap: 20px; /* アイコン間の余白 */
+    margin-top: 50px; /* ギャラリーとの間の余白 */
+}
+
+/* SNSアイコンのサイズと動きの設定 */
+.sns-links img {
+    width: 40px; /* アイコンの大きさ */
+    height: 40px;
+    transition: opacity 0.3s; /* マウスを乗せたときの変化を滑らかにする */
+}
+
+.sns-links img:hover {
+    opacity: 0.7; /* マウスを乗せたら少し薄くなる */
+}
+
+/* ↑↑↑ ここまで ↑↑↑ */
