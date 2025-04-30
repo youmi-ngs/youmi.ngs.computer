@@ -19,8 +19,8 @@ h1 {
 }
 
 .profile img {
-    width: 120px; /* 写真サイズ */
-    height: 120px;
+    width: 200px; /* 写真サイズ */
+    height: 200px;
     border-radius: 50%; /* 丸く表示 */
     object-fit: cover; /* 写真をきれいに表示 */
     margin-bottom: 15px;
