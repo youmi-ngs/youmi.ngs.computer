@@ -13,6 +13,7 @@
         <p>17y/o</p>
         <p>Tokyo, Japan</p>
     </div>
+
     <div class="sns-links">
         <a href="https://twitter.com/youmi_dayo" target="_blank">
             <img src="images/sns/x.svg" alt="Twitter">
@@ -28,13 +29,43 @@
     </div>
 
     <h1>My Photos Gallery</h1>
-
     <div class="gallery">
-        <img src="images/gallery/photo1.jpg" alt="at Tokyo DisneySea">
-        <img src="images/gallery/photo2.jpg" alt="Cherry blossoms at Kamakura">
-        <img src="images/gallery/photo3.jpg" alt="a rain day">
-        <img src="images/gallery/photo4.jpg" alt="at Odaiba">
+        <div class="image-container">
+            <img src="images/gallery/photo1.jpg">
+        </div>
+        <div class="image-container">
+            <img src="images/gallery/photo2.jpg">
+        </div>
+        <div class="image-container">
+            <img src="images/gallery/photo3.jpg">
+        </div>
     </div>
+    <div class="gallery">
+        <div class="image-container">
+            <img src="images/gallery/photo4.jpg">
+        </div>
+        <div class="image-container">
+            <img src="images/gallery/photo5.jpg">
+        </div>
+        <div class="image-container">
+            <img src="images/gallery/photo6.jpg">
+        </div>
+    </div>
+
+        <!-- 拡大表示用のモーダル -->
+    <div id="modal" class="modal" onclick="this.style.display='none'">
+        <img id="modal-image">
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.querySelectorAll('.gallery img').forEach(img => {
+            img.onclick = () => {
+                document.getElementById('modal-image').src = img.src;
+                document.getElementById('modal').style.display = 'flex';
+            };
+        });
+    </script>
 
 </body>
 
