@@ -104,7 +104,7 @@ h1 {
 .modal img {
     max-width: 90%;
     max-height: 90%;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     /* box-shadow: 0 0 20px rgb(255, 255, 255); */
 }
 
