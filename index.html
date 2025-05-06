@@ -77,41 +77,86 @@
         </div>
     </div>
     
+    
     <script>
-        document.querySelectorAll('.image-container').forEach(container => {
+        let currentImageIndex = 0;
+        const containers = Array.from(document.querySelectorAll('.image-container'));
+        
+        const modal = document.getElementById('modal');
+        const modalImage = document.getElementById('modal-image');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalCamera = document.getElementById('modal-camera');
+        const modalContent = document.querySelector('.modal-info');
+        
+        function showModal(container) {
+            modalImage.src = container.querySelector('img').src;
+        
+            const hasTitle = container.dataset.title && container.dataset.title.trim() !== '';
+            const hasDesc = container.dataset.desc && container.dataset.desc.trim() !== '';
+            const hasCamera = container.dataset.camera && container.dataset.camera.trim() !== '';
+        
+            if (hasTitle || hasDesc || hasCamera) {
+                modalTitle.textContent = hasTitle ? container.dataset.title : '';
+                modalDesc.textContent = hasDesc ? container.dataset.desc : '';
+                modalCamera.textContent = hasCamera ? container.dataset.camera : '';
+        
+                modalContent.style.display = 'block';
+                modalImage.style.maxHeight = '70vh';
+            } else {
+                modalContent.style.display = 'none';
+                modalImage.style.maxHeight = '90vh';
+            }
+        
+            modal.style.display = 'flex';
+        }
+        
+        containers.forEach((container, index) => {
             container.onclick = () => {
-                const modal = document.getElementById('modal');
-                const modalImage = document.getElementById('modal-image');
-                const modalTitle = document.getElementById('modal-title');
-                const modalDesc = document.getElementById('modal-desc');
-                const modalCamera = document.getElementById('modal-camera');
-                const modalContent = document.querySelector('.modal-info');
-        
-                modalImage.src = container.querySelector('img').src;
-        
-                const hasTitle = container.dataset.title && container.dataset.title.trim() !== '';
-                const hasDesc = container.dataset.desc && container.dataset.desc.trim() !== '';
-                const hasCamera = container.dataset.camera && container.dataset.camera.trim() !== '';
-        
-                if (hasTitle || hasDesc || hasCamera) {
-                    modalTitle.textContent = hasTitle ? container.dataset.title : '';
-                    modalDesc.textContent = hasDesc ? container.dataset.desc : '';
-                    modalCamera.textContent = hasCamera ? container.dataset.camera : '';
-        
-                    document.querySelector('.modal-info').style.display = 'block';
-                    modalImage.style.maxHeight = '90vh';
-
-                } else {
-                    document.querySelector('.modal-info').style.display = 'none';
-                    modalImage.style.maxHeight = '110vh';
-                }
-        
-                modal.style.display = 'flex';
+                currentImageIndex = index;
+                showModal(container);
             };
         });
-        </script>
         
-    
+        // PC: キーボード矢印キー対応
+        document.addEventListener('keydown', (e) => {
+            if (modal.style.display === 'flex') {
+                if (e.key === 'ArrowRight') {
+                    currentImageIndex = (currentImageIndex + 1) % containers.length;
+                    showModal(containers[currentImageIndex]);
+                } else if (e.key === 'ArrowLeft') {
+                    currentImageIndex = (currentImageIndex - 1 + containers.length) % containers.length;
+                    showModal(containers[currentImageIndex]);
+                } else if (e.key === 'Escape') {
+                    modal.style.display = 'none';
+                }
+            }
+        });
+        
+        // スマホ：左右スワイプ対応
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        modal.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        modal.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                currentImageIndex = (currentImageIndex + 1) % containers.length;
+                showModal(containers[currentImageIndex]);
+            }
+            if (touchEndX > touchStartX + 50) {
+                currentImageIndex = (currentImageIndex - 1 + containers.length) % containers.length;
+                showModal(containers[currentImageIndex]);
+            }
+        }
+    </script>
 
 </body>
 
