@@ -31,37 +31,34 @@
     <h1>My Photos Gallery</h1>
 
     <div class="gallery">
-        <div class="image-container" 
-             data-title="エイ" 
-             data-desc="京都水族館"
-             data-camera="Canon EOS R50">
+        <div class="image-container" data-title="エイ" data-desc="京都水族館" data-camera="Canon EOS R50, 18mm, f5.6, 1/80s, ISO 180">
             <img src="images/gallery/photo1.jpg">
         </div>
-        <div class="image-container">
+        <div class="image-container"  data-title="幸せだけど忘れたい記憶" data-desc="東京ディズニーシー" data-camera="Canon EOS R50, 45mm, f6.3, 1/60s, ISO 100">
             <img src="images/gallery/photo2.jpg">
         </div>
-        <div class="image-container">
+        <div class="image-container" data-title="パフィーと ハッピー！パルパルーザ！" data-desc="東京ディズニーランド" data-camera="Canon EOS R50, 50mm, f1.8, 1/4000s, ISO 100">
             <img src="images/gallery/photo3.jpg">
         </div>
-        <div class="image-container">
+        <div class="image-container" data-title="可愛いと葉桜" data-desc="新宿御苑" data-camera="Canon EOS R50, 50mm, f1.8, 1/2000s, ISO 100">
             <img src="images/gallery/photo4.jpg">
         </div>
-        <div class="image-container">
+        <div class="image-container" data-title="桜" data-desc="鎌倉" data-camera="Canon EOS R50, 50mm, f3.5, 1/500s, ISO 100">
             <img src="images/gallery/photo5.jpg">
         </div>
-        <div class="image-container">
+        <div class="image-container" data-title="水たまり" data-desc="吉祥寺" data-camera="Canon EOS R50, 50mm, f1.8, 1/500s, ISO 800">
             <img src="images/gallery/photo6.jpg">
         </div>
-        <div class="image-container">
+        <div class="image-container" data-title="夕焼け" data-desc="お台場" data-camera="Canon EOS R50, 50mm, f1.8, 1/1000s, ISO 100">
             <img src="images/gallery/photo7.jpg">
         </div>
-        <div class="image-container">
+        <div class="image-container" data-title="夕焼け" data-desc="お台場" data-camera="Canon EOS R50, 50mm, f1.8, 1/500s, ISO 100">
             <img src="images/gallery/photo8.jpg">
         </div>
-        <div class="image-container">
+        <div class="image-container" data-title="夜の始まり" data-desc="港区のどこか" data-camera="Canon EOS R50, 50mm, f1.8, 1/80s, ISO 800">
             <img src="images/gallery/photo9.jpg">
         </div>
-        <div class="image-container">
+        <div class="image-container" data-title="私も。" data-desc="羽田空港" data-camera="Canon EOS R50, 210mm, f7.1, 1/10s, ISO 1600">
             <img src="images/gallery/photo10.jpg">
         </div>
     </div>
@@ -102,10 +99,10 @@
                 modalCamera.textContent = hasCamera ? container.dataset.camera : '';
         
                 modalContent.style.display = 'block';
-                modalImage.style.maxHeight = '70vh';
+                modalImage.style.maxHeight = '90vh';
             } else {
                 modalContent.style.display = 'none';
-                modalImage.style.maxHeight = '90vh';
+                modalImage.style.maxHeight = '110vh';
             }
         
             modal.style.display = 'flex';
