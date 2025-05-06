@@ -111,16 +111,16 @@ h1 {
 }
 
 #modal-image {
-    max-width: 80%;
+    max-width: 90%;
 }
 
 .modal-info {
-    margin-top: 15px;
+    margin-top: 10px;
     color: #fff;
 }
 
 .modal-info h2 {
-    margin: 10px 0;
+    margin: 8px 0;
     font-size: 24px;
 }
 
