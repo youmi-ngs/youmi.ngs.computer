@@ -31,7 +31,10 @@
     <h1>My Photos Gallery</h1>
 
     <div class="gallery">
-        <div class="image-container">
+        <div class="image-container" 
+             data-title="エイ" 
+             data-desc="京都水族館"
+             data-camera="Canon EOS R50">
             <img src="images/gallery/photo1.jpg">
         </div>
         <div class="image-container">
@@ -63,20 +66,52 @@
         </div>
     </div>
 
-        <!-- 拡大表示用のモーダル -->
     <div id="modal" class="modal" onclick="this.style.display='none'">
-        <img id="modal-image">
+        <div class = "modal-content">
+            <img id="modal-image">
+            <div class="modal-info">
+                <h2 id="modal-title"></h2>
+                <p id="modal-desc"></p>
+                <p id="modal-camera"></p>
+            </div>
+        </div>
     </div>
-
-    <!-- JavaScript -->
+    
     <script>
-        document.querySelectorAll('.gallery img').forEach(img => {
-            img.onclick = () => {
-                document.getElementById('modal-image').src = img.src;
-                document.getElementById('modal').style.display = 'flex';
+        document.querySelectorAll('.image-container').forEach(container => {
+            container.onclick = () => {
+                const modal = document.getElementById('modal');
+                const modalImage = document.getElementById('modal-image');
+                const modalTitle = document.getElementById('modal-title');
+                const modalDesc = document.getElementById('modal-desc');
+                const modalCamera = document.getElementById('modal-camera');
+                const modalContent = document.querySelector('.modal-info');
+        
+                modalImage.src = container.querySelector('img').src;
+        
+                const hasTitle = container.dataset.title && container.dataset.title.trim() !== '';
+                const hasDesc = container.dataset.desc && container.dataset.desc.trim() !== '';
+                const hasCamera = container.dataset.camera && container.dataset.camera.trim() !== '';
+        
+                if (hasTitle || hasDesc || hasCamera) {
+                    modalTitle.textContent = hasTitle ? container.dataset.title : '';
+                    modalDesc.textContent = hasDesc ? container.dataset.desc : '';
+                    modalCamera.textContent = hasCamera ? container.dataset.camera : '';
+        
+                    document.querySelector('.modal-info').style.display = 'block';
+                    modalImage.style.maxHeight = '90vh';
+
+                } else {
+                    document.querySelector('.modal-info').style.display = 'none';
+                    modalImage.style.maxHeight = '110vh';
+                }
+        
+                modal.style.display = 'flex';
             };
         });
-    </script>
+        </script>
+        
+    
 
 </body>
 
