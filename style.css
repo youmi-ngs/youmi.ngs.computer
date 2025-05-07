@@ -120,12 +120,21 @@ h1 {
 }
 
 .modal-info h2 {
-    margin: 8px 0;
+    margin: 8px 0 15px;
     font-size: 24px;
 }
 
-.modal-info p {
-    margin: 5px 0;
-    font-size: 16px;
+#modal-place {
+    margin: 15px 0 5px;
+    font-size: 18px;
 }
 
+#modal-camera{
+    margin: 5px 0 20px;
+    font-size: 14px;
+}
+
+#modal-desc {
+    margin: 20px 0 10px;
+    font-size: 9px;
+}
