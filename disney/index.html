@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gallery -Disney</title>
+        <link rel="stylesheet" href="../style.css"/>
+    </head>
+    <body>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <nav class="side-menu" id="sideMenu">
+            <h1><a href="../index.html">Youmi Nagase</a></h1>
+            <h2>Gallery</h2>
+            <ul>
+                <li><a href="../main/index.html">Main</a></li>
+                <li><a href="../disney/index.html">Disney</a></li>
+                <li><a href="../thai/index.html">Thai</a></li>
+            </ul>
+        </nav>
+
+        <h1>Gallery / Disney</h1>
+        
+        <div class="coming-soon">
+            <h2>Coming soon</h2>
+            <p><a href="../index.html">Back to Top</a></p>
+        </div>
+
+        <script>
+            function toggleMenu() {
+              document.getElementById('sideMenu').classList.toggle('open');
+            }
+        </script>
+    </body>
+</html>

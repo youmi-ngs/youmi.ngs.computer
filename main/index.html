@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gallery</title>
+        <link rel="stylesheet" href="../style.css"/>
+    </head>
+
+    <body>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <nav class="side-menu" id="sideMenu">
+            <h1><a href="../index.html">Youmi Nagase</a></h1>
+            <h2>Gallery</h2>
+            <ul>
+                <li><a href="../main/index.html">Main</a></li>
+                <li><a href="../disney/index.html">Disney</a></li>
+                <li><a href="../thai/index.html">Thai</a></li>
+            </ul>
+        </nav>
+
+        <h1>My Main Photos Gallery</h1>
+
+        <div class="gallery">
+            <div class="image-container" data-title="エイ" data-place="京都水族館" data-camera="Canon EOS R50, 18mm, f5.6, 1/80s, ISO 180">
+                <img src="images/photo1.jpg">
+            </div>
+            <div class="image-container"  data-title="" data-place="東京ディズニーシー カフェ・ポルトフィーノ" data-camera="Canon EOS R50, 45mm, f6.3, 1/60s, ISO 100">
+                <img src="images/photo2.jpg">
+            </div>
+            <div class="image-container" data-title="未来" data-place="東京ディズニーランド トゥモローランド" data-camera="Canon EOS R50, 50mm, f1.8, 1/4000s, ISO 100">
+                <img src="images/photo3.jpg">
+            </div>
+            <div class="image-container" data-title="パフィーと ハッピー！パルパルーザ！" data-place="東京ディズニーランド" data-camera="Canon EOS R50, 50mm, f1.8, 1/4000s, ISO 100">
+                <img src="images/photo4.jpg">
+            </div>
+            <div class="image-container" data-title="可愛いと葉桜" data-place="新宿御苑" data-camera="Canon EOS R50, 50mm, f1.8, 1/2000s, ISO 100">
+                <img src="images/photo5.jpg">
+            </div>
+            <div class="image-container" data-title="桜" data-place="鎌倉" data-camera="Canon EOS R50, 50mm, f3.5, 1/500s, ISO 100">
+                <img src="images/photo6.jpg">
+            </div>
+            <div class="image-container" data-title="水たまり" data-place="吉祥寺" data-camera="Canon EOS R50, 50mm, f1.8, 1/500s, ISO 800">
+                <img src="images/photo7.jpg">
+            </div>
+            <div class="image-container" data-title="夕焼け" data-place="お台場" data-camera="Canon EOS R50, 50mm, f1.8, 1/1000s, ISO 100">
+                <img src="images/photo8.jpg">
+            </div>
+            <div class="image-container" data-title="夕焼け" data-place="お台場" data-camera="Canon EOS R50, 50mm, f1.8, 1/500s, ISO 100">
+                <img src="images/photo9.jpg">
+            </div>
+            <div class="image-container" data-title="夜の始まり" data-place="港区のどこか" data-camera="Canon EOS R50, 50mm, f1.8, 1/80s, ISO 800">
+                <img src="images/photo10.jpg">
+            </div>
+            <div class="image-container" data-title="私も" data-place="羽田空港" data-desc="流し撮り向いてない" data-camera="Canon EOS R50, 210mm, f7.1, 1/10s, ISO 1600">
+                <img src="images/photo11.jpg">
+            </div>
+        </div>
+
+        <div id="modal" class="modal" onclick="this.style.display='none'">
+            <div class = "modal-content">
+                <img id="modal-image">
+                <div class="modal-info">
+                    <h2 id="modal-title"></h2>
+                    <p id="modal-place"></p>
+                    <p id="modal-camera"></p>
+                    <p id="modal-desc"></p>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            let currentImageIndex = 0;
+            const containers = Array.from(document.querySelectorAll('.image-container'));
+            
+            const modal = document.getElementById('modal');
+            const modalImage = document.getElementById('modal-image');
+            const modalTitle = document.getElementById('modal-title');
+            const modalPlace = document.getElementById('modal-place');
+            const modalDesc = document.getElementById('modal-desc');
+            const modalCamera = document.getElementById('modal-camera');
+            const modalContent = document.querySelector('.modal-info');
+            
+            function showModal(container) {
+                modalImage.src = container.querySelector('img').src;
+            
+                const hasTitle = container.dataset.title && container.dataset.title.trim() !== '';
+                const hasPlace= container.dataset.place&& container.dataset.place.trim() !== '';
+                const hasCamera = container.dataset.camera && container.dataset.camera.trim() !== '';
+                const hasDesc = container.dataset.desc && container.dataset.desc.trim() !== '';
+            
+                if (hasTitle || hasPlace || hasCamera || hasDesc) {
+                    modalTitle.textContent = hasTitle ? container.dataset.title : '';
+                    modalPlace.textContent = hasPlace ? container.dataset.place : '';
+                    modalCamera.textContent = hasCamera ? container.dataset.camera : '';
+                    modalDesc.textContent = hasDesc ? container.dataset.desc : '';
+            
+                    modalContent.style.display = 'block';
+                    modalImage.style.maxHeight = '90vh';
+                } else {
+                    modalContent.style.display = 'none';
+                    modalImage.style.maxHeight = '100vh';
+                }
+            
+                modal.style.display = 'flex';
+            }
+            
+            containers.forEach((container, index) => {
+                container.onclick = () => {
+                    currentImageIndex = index;
+                    showModal(container);
+                };
+            });
+            
+            // PC: キーボード矢印キー対応
+            document.addEventListener('keydown', (e) => {
+                if (modal.style.display === 'flex') {
+                    if (e.key === 'ArrowRight') {
+                        currentImageIndex = (currentImageIndex + 1) % containers.length;
+                        showModal(containers[currentImageIndex]);
+                    } else if (e.key === 'ArrowLeft') {
+                        currentImageIndex = (currentImageIndex - 1 + containers.length) % containers.length;
+                        showModal(containers[currentImageIndex]);
+                    } else if (e.key === 'Escape') {
+                        modal.style.display = 'none';
+                    }
+                }
+            });
+            
+            // スマホ：左右スワイプ対応
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            modal.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            modal.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    currentImageIndex = (currentImageIndex + 1) % containers.length;
+                    showModal(containers[currentImageIndex]);
+                }
+                if (touchEndX > touchStartX + 50) {
+                    currentImageIndex = (currentImageIndex - 1 + containers.length) % containers.length;
+                    showModal(containers[currentImageIndex]);
+                }
+            }
+
+            function toggleMenu() {
+                document.getElementById('sideMenu').classList.toggle('open');
+            }
+        </script>
+
+    </body>
+</html>
