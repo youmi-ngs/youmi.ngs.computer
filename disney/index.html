@@ -21,12 +21,125 @@
 
         <h1>Gallery / Disney</h1>
 
-        <div class="coming-soon">
+        <!-- <div class="coming-soon">
             <h2>Coming soon</h2>
             <p><a href="../index.html">Back to Top</a></p>
+        </div> -->
+
+        <div class="gallary-wrapper">
+            <div class="gallery">
+                <div class="image-container" data-title="Daisy" data-place="東京ディズニーランド" data-camera="Canon EOS R50, 210mm, f7.1, 1/500s, ISO 3200">
+                    <img src="images/daisy20240213.JPG">
+                </div>
+                <div class="image-container" data-title="Daisy" data-place="東京ディズニーシー" data-camera="Canon EOS R50, 28mm, f7.2, 1/400s, ISO 200">
+                    <img src="images/daisy20240415.JPG">
+                </div>
+                <div class="image-container" data-title="Daisy" data-place="東京ディズニーランド" data-camera="Canon EOS R50">
+                    <img src="images/daisy20240811.JPG">
+                </div>
+                <div class="image-container" data-title="Daisy" data-place="東京ディズニーシー" data-camera="Canon EOS R50, 50mm, f1.8, 1/640s, ISO 100">
+                    <img src="images/daisy20250203.JPG">
+                </div>
+                <div class="image-container" data-title="Daisy" data-place="東京ディズニーランド" data-camera="Canon EOS R50, 155mm, f7.1, 1/800s, ISO 800">
+                    <img src="images/daisy20250314.JPG">
+                </div>
+            </div>
         </div>
 
+        <div id="modal" class="modal" onclick="this.style.display='none'">
+            <div class = "modal-content">
+                <img id="modal-image">
+                <div class="modal-info">
+                    <h2 id="modal-title"></h2>
+                    <p id="modal-place"></p>
+                    <p id="modal-camera"></p>
+                    <p id="modal-desc"></p>
+                </div>
+            </div>
+        </div>
+
+
         <script>
+            let currentImageIndex = 0;
+            const containers = Array.from(document.querySelectorAll('.image-container'));
+            
+            const modal = document.getElementById('modal');
+            const modalImage = document.getElementById('modal-image');
+            const modalTitle = document.getElementById('modal-title');
+            const modalPlace = document.getElementById('modal-place');
+            const modalDesc = document.getElementById('modal-desc');
+            const modalCamera = document.getElementById('modal-camera');
+            const modalContent = document.querySelector('.modal-info');
+            
+            function showModal(container) {
+                modalImage.src = container.querySelector('img').src;
+            
+                const hasTitle = container.dataset.title && container.dataset.title.trim() !== '';
+                const hasPlace= container.dataset.place&& container.dataset.place.trim() !== '';
+                const hasCamera = container.dataset.camera && container.dataset.camera.trim() !== '';
+                const hasDesc = container.dataset.desc && container.dataset.desc.trim() !== '';
+            
+                if (hasTitle || hasPlace || hasCamera || hasDesc) {
+                    modalTitle.textContent = hasTitle ? container.dataset.title : '';
+                    modalPlace.textContent = hasPlace ? container.dataset.place : '';
+                    modalCamera.textContent = hasCamera ? container.dataset.camera : '';
+                    modalDesc.textContent = hasDesc ? container.dataset.desc : '';
+            
+                    modalContent.style.display = 'block';
+                    modalImage.style.maxHeight = '90vh';
+                } else {
+                    modalContent.style.display = 'none';
+                    modalImage.style.maxHeight = '100vh';
+                }
+            
+                modal.style.display = 'flex';
+            }
+            
+            containers.forEach((container, index) => {
+                container.onclick = () => {
+                    currentImageIndex = index;
+                    showModal(container);
+                };
+            });
+            
+            // PC: キーボード矢印キー対応
+            document.addEventListener('keydown', (e) => {
+                if (modal.style.display === 'flex') {
+                    if (e.key === 'ArrowRight') {
+                        currentImageIndex = (currentImageIndex + 1) % containers.length;
+                        showModal(containers[currentImageIndex]);
+                    } else if (e.key === 'ArrowLeft') {
+                        currentImageIndex = (currentImageIndex - 1 + containers.length) % containers.length;
+                        showModal(containers[currentImageIndex]);
+                    } else if (e.key === 'Escape') {
+                        modal.style.display = 'none';
+                    }
+                }
+            });
+            
+            // スマホ：左右スワイプ対応
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            modal.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            modal.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    currentImageIndex = (currentImageIndex + 1) % containers.length;
+                    showModal(containers[currentImageIndex]);
+                }
+                if (touchEndX > touchStartX + 50) {
+                    currentImageIndex = (currentImageIndex - 1 + containers.length) % containers.length;
+                    showModal(containers[currentImageIndex]);
+                }
+            }
             function toggleMenu() {
               document.getElementById('sideMenu').classList.toggle('open');
             }
