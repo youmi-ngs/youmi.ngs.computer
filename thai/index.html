@@ -31,10 +31,20 @@
         </div>
 
         <script>
-            function toggleMenu() {
-              const menu = document.getElementById("navLinks");
-              menu.classList.toggle("open");
-            }
+            document.addEventListener("DOMContentLoaded", function () {
+              const toggle = document.querySelector(".dropdown-toggle");
+              const menu = document.querySelector(".dropdown-menu");
+          
+              toggle.addEventListener("click", function (e) {
+                e.stopPropagation(); // 他のクリックで閉じる処理がある場合用
+                menu.classList.toggle("open");
+              });
+          
+              // 画面の他の場所をタップしたら閉じる
+              document.addEventListener("click", function () {
+                menu.classList.remove("open");
+              });
+            });
         </script>
     </body>
 </html>
