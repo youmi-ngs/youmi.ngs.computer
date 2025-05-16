@@ -170,11 +170,6 @@ h1 {
     line-height: 1;
   }
   
-  /* ギャラリーナビ全体 */
-  .main-nav {
-    position: relative;
-  }
-  
   /* Galleryボタン */
   .dropdown {
     position: relative;
@@ -246,7 +241,6 @@ h1 {
     align-items: center;
     gap: 24px;  
 }
-
 
   .coming-soon h2 {
     display: flex;
