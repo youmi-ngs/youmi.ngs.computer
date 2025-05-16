@@ -38,6 +38,7 @@ h1 {
     font-size: 20px;
     color: #555;
     margin: 0 auto;
+    margin-bottom: 15px;
     max-width: 500px; 
 }
   
@@ -146,85 +147,106 @@ h1 {
     font-size: 9px;
 }
 
-/* ハンバーガーアイコン */
-.menu-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 36px;
-    cursor: pointer;
-    z-index: 1001;
-  }
-  
-  /* サイドメニュー本体（初期は非表示状態） */
-  .side-menu {
-    position: fixed;
-    top: 0;
-    right: -300px; /* ← widthと合わせて隠す幅 */
-    width: 260px;
-    max-width: 80vw;
-    height: 100%;
+.top-nav {
+    display: flex;
+    align-items: center; 
+    gap: 24px;
+    padding: 12px 24px;
     background-color: #fff;
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    transition: right 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }  
+
+  .site-title {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .site-title a {
+    font-size: 28px;  
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    line-height: 1;
+  }
+  
+  /* ギャラリーナビ全体 */
+  .main-nav {
+    position: relative;
+  }
+  
+  /* Galleryボタン */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    align-items: center;
+  }
+  
+  .dropdown-toggle {
+    align-items: center;
+    font-weight: bold;
+    color: #333;
+    font-size: 20px;           /* ← h1と合わせる！ */
+    line-height: 1;
+    display: flex;
+    gap: 4px;
+    margin-left: 20px;
+  }
+  
+  .dropdown-icon {
+    font-size: 12px;
+    margin-left: 4px;
+    line-height: 1;
+    transform: translateY(1px); /* ← 微調整でバランス取れる！ */
+  }
+  
+  
+  /* メニュー本体（初期は非表示） */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    padding: 8px 0;
     z-index: 1000;
-    overflow-y: auto;
-    text-align: left;
+    min-width: 120px;
   }
   
-  /* 開いたとき */
-  .side-menu.open {
-    right: 0;
-  }
-  
-  /* サイドメニュー内のテキストスタイル */
-  .side-menu h1 {
-    font-size: 30px;
-    margin: 50px 0 60px 0;
-    color: #333;
-  }
-
-  .side-menu a {
+  /* メニュー表示時 */
+  .dropdown:hover .dropdown-menu {
     display: block;
-    text-decoration: none;
-    color: #333;
-  }
-
-  .side-menu h2 {
-    font-size: 20px;
-    margin: 0 0 20px 0;
-    color: #333;
   }
   
-  .side-menu ul {
-    list-style: disc;
-    padding-left: 20px;
-    margin: 0;
-    text-decoration: none;
-  }
-  
-  .side-menu li {
-    font-size: 16px;
-    margin-bottom: 12px;
-    text-decoration: none;
-  }
-
-  .side-menu h1 a {
-    text-decoration: none;
-    color: #333;
+  .dropdown-menu a {
     display: block;
-    text-align: left; 
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
   }
 
-  .side-menu a:hover {
-    background-color: #ecffed;
-  }
-
-  .side-menu a.active {
-    color: #939393;
+  .dropdown-menu a.active {
+    color: #999;
+    font-weight: bold;
   }
   
+  
+  .dropdown-menu a:hover {
+    background-color: #f0f0f0;
+    color: #1a8400;
+  } 
+
+  .site-title,
+  .dropdown {
+    display: flex;
+    align-items: center;
+    gap: 24px;  
+}
+
 
   .coming-soon h2 {
     display: flex;

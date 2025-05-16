@@ -8,23 +8,27 @@
     </head>
 
     <body>
-        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-            <nav class="side-menu" id="sideMenu">
-                <h1><a href="index.html">Youmi Nagase</a></h1>
-                <h2>Gallery</h2>
-                <ul>
-                    <li><a href="main/index.html">Main</a></li>
-                    <li><a href="disney/index.html">Disney</a></li>
-                    <li><a href="thai/index.html">Thai</a></li>
-                </ul>
-            </nav>
-
-
+        <header class="top-nav">
+            <div class="site-title">
+                
+              <h1><a href="index.html">Youmi Nagase</a></h1>
+              <div class="dropdown">
+                <span class="dropdown-toggle">Gallery <span class="dropdown-icon">▼</span></span>
+                <div class="dropdown-menu">
+                  <a href="main/index.html">Main</a>
+                  <a href="disney/index.html">Disney</a>
+                  <a href="thai/index.html">Thai</a>
+                </div>
+              </div>
+            </div>
+        </header>
+          
         <div class="profile">
             <img src="images/profile.jpg" alt="Youmi's profile photo">
             <h2>Youmi Nagase</h2>
-            <p>17y/o</p>
+            <p>Ordinary Japanese high school student</p>
             <p>Tokyo, Japan</p>
+            <p>Birth 02/23/2008</p>
         </div>
 
         <div class="sns-links">
@@ -43,9 +47,12 @@
 
         <script>
             function toggleMenu() {
-            document.getElementById('sideMenu').classList.toggle('open');
+              const menu = document.getElementById("navLinks");
+              menu.classList.toggle("open");
             }
         </script>
+          
+          
     </body>
 
 </html>
