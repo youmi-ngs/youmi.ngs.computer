@@ -45,14 +45,13 @@ h1 {
   .gallery {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 5px;
     justify-content: center;
     padding: 0 16px;
   }
   
   .image-container {
-    width: calc(25% - 10px);
-    margin-bottom: 3px;
+    width: calc(25% - 5px);
     display: flex;
     justify-content: center;
     align-items: center;
